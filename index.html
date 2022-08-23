@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <style>
+        #map {
+            width: 1606px;
+            height: 853px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/Stations_1.js"></script>
+        <script src="data/Newscratchlayer_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-35.41457079076545,149.1054920986121],[-35.37516450779648,149.19363470258827]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0');
+        map.getPane('pane_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0').style.zIndex = 400;
+        var img_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0 = 'data/EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0.png';
+        var img_bounds_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0 = [[-35.42294269774776,149.10301037235206],[-35.354444265452756,149.18665793991616]];
+        var layer_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0 = new L.imageOverlay(img_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0,
+                                              img_bounds_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0,
+                                              {pane: 'pane_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0'});
+        bounds_group.addLayer(layer_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0);
+        map.addLayer(layer_EPSG7855_Date20220715_Lat35388693_Lon149144812_Mpp2389_0);
+        function pop_Stations_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Label'] !== null ? autolinker.link(feature.properties['Label'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Stations_1_0() {
+            return {
+                pane: 'pane_Stations_1',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(4,49,58,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,183,0,1.0)',
+                interactive: true,
+            }
+        }
+        function style_Stations_1_1() {
+            return {
+                pane: 'pane_Stations_1',
+                shape: 'square',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(4,49,58,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Stations_1');
+        map.getPane('pane_Stations_1').style.zIndex = 401;
+        map.getPane('pane_Stations_1').style['mix-blend-mode'] = 'normal';
+        var layer_Stations_1 = new L.geoJson.multiStyle(json_Stations_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Stations_1',
+            layerName: 'layer_Stations_1',
+            pane: 'pane_Stations_1',
+            onEachFeature: pop_Stations_1,
+            pointToLayers: [function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Stations_1_0(feature));
+            },function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Stations_1_1(feature));
+            },
+        ]});
+        bounds_group.addLayer(layer_Stations_1);
+        map.addLayer(layer_Stations_1);
+        function pop_Newscratchlayer_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FID'] !== null ? autolinker.link(feature.properties['FID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Newscratchlayer_2_0() {
+            return {
+                pane: 'pane_Newscratchlayer_2',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(199,47,151,0.4)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Newscratchlayer_2');
+        map.getPane('pane_Newscratchlayer_2').style.zIndex = 402;
+        map.getPane('pane_Newscratchlayer_2').style['mix-blend-mode'] = 'normal';
+        var layer_Newscratchlayer_2 = new L.geoJson(json_Newscratchlayer_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Newscratchlayer_2',
+            layerName: 'layer_Newscratchlayer_2',
+            pane: 'pane_Newscratchlayer_2',
+            onEachFeature: pop_Newscratchlayer_2,
+            style: style_Newscratchlayer_2_0,
+        });
+        bounds_group.addLayer(layer_Newscratchlayer_2);
+        map.addLayer(layer_Newscratchlayer_2);
+        setBounds();
+        var i = 0;
+        layer_Stations_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Label'] !== null?String('<div style="color: #ffb700; font-size: 14pt; font-weight: bold; font-style: italic; font-family: \'Calibri\', sans-serif;">' + layer.feature.properties['Label']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Stations_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        map.addControl(new L.Control.Search({
+            layer: layer_Stations_1,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Label'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        resetLabels([layer_Stations_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Stations_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Stations_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Stations_1]);
+        });
+        </script>
+    </body>
+</html>
